@@ -1,0 +1,38 @@
+
+<!doctype html>
+<html>
+<head></head>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<body>
+
+<iframe id="widget" src="https://www.w3schools.com"><!--Need to update the url-->
+
+</iframe>
+<br/>
+<input type="button" id="btnSave" value="Save PNG"/>
+
+<canvas id="canvas"></canvas>
+</body>
+<script>
+$(document).ready(function(){
+console.log("started")
+ $("#btnSave").click(function() { 
+ console.log("click is applied")
+ var body = $("#widget").contents().find("body");
+ console.log(body);
+        html2canvas(body, {
+            onrendered: function(canvas) {
+            	console.log("went inside");
+                theCanvas = canvas;
+                document.body.appendChild(canvas);
+                console.log(canvas.toDataURL());
+            }
+        });
+    });
+	});
+</script>
+</html>
